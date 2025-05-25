@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float boostDuration = 0.2f;
     [SerializeField] private float boostCooldown = 1f;
     [SerializeField] private float turnSpeed = 5f;
+    [SerializeField] private float strafeSpeed = 4f;
+    [SerializeField] private float verticalStrafeSpeed = 2f;
     [SerializeField] private Vector2 movementInput;
     [SerializeField] private OrcaState currentState = OrcaState.Swimming;
     [SerializeField] private float minXRotation = -50f;
@@ -50,9 +52,13 @@ public class PlayerController : MonoBehaviour
         var torque = rb.rotation * new Vector3(movementInput.y * turnSpeed * Time.deltaTime, movementInput.x * turnSpeed * Time.deltaTime);
         rb.AddTorque(torque, ForceMode.VelocityChange);
         rb.AddForce(transform.forward * speed * Time.deltaTime, ForceMode.VelocityChange);
+        rb.AddForce(transform.right * movementInput.x * Time.deltaTime * strafeSpeed);
+        rb.AddForce(transform.up * movementInput.y * Time.deltaTime * strafeSpeed);
 
         float xRotation = ClampAngle(rb.rotation.eulerAngles.x, minXRotation, maxXRotation);
         rb.rotation = Quaternion.Euler(xRotation, rb.rotation.eulerAngles.y, 0);
+
+
     }
 
     float ClampAngle(float val, float min, float max)
