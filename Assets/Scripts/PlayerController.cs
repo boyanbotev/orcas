@@ -45,8 +45,12 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         var speed = currentState == OrcaState.Boosting ? boostSpeed : moveSpeed;
-        rb.MoveRotation(rb.rotation * Quaternion.Euler(movementInput.y * turnSpeed * Time.deltaTime, movementInput.x * turnSpeed * Time.deltaTime, 0));
+        //var targetRotation = rb.rotation * Quaternion.Euler(movementInput.y * turnSpeed * Time.deltaTime, movementInput.x * turnSpeed * Time.deltaTime, 0);
+        //rb.MoveRotation(targetRotation);
+        var torque = rb.rotation * new Vector3(movementInput.y * turnSpeed * Time.deltaTime, movementInput.x * turnSpeed * Time.deltaTime);
+        rb.AddTorque(torque, ForceMode.VelocityChange);
         rb.AddForce(transform.forward * speed * Time.deltaTime, ForceMode.VelocityChange);
+
         float xRotation = ClampAngle(rb.rotation.eulerAngles.x, minXRotation, maxXRotation);
         rb.rotation = Quaternion.Euler(xRotation, rb.rotation.eulerAngles.y, 0);
     }
@@ -61,12 +65,6 @@ public class PlayerController : MonoBehaviour
         {
             val = relRange * Mathf.Sign(z) + offset;
         }
-
-        Debug.Log(val+"..."+ min+"..."+ max);
-        //if (val < min)
-            //val = min;
-        //else if (val > max)
-            //val = max;
         return val;
     }
 
