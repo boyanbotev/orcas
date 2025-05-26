@@ -47,8 +47,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         var speed = currentState == OrcaState.Boosting ? boostSpeed : moveSpeed;
-        //var targetRotation = rb.rotation * Quaternion.Euler(movementInput.y * turnSpeed * Time.deltaTime, movementInput.x * turnSpeed * Time.deltaTime, 0);
-        //rb.MoveRotation(targetRotation);
+
         var torque = rb.rotation * new Vector3(movementInput.y * turnSpeed * Time.deltaTime, movementInput.x * turnSpeed * Time.deltaTime);
         rb.AddTorque(torque, ForceMode.VelocityChange);
         rb.AddForce(transform.forward * speed * Time.deltaTime, ForceMode.VelocityChange);
@@ -57,8 +56,6 @@ public class PlayerController : MonoBehaviour
 
         float xRotation = ClampAngle(rb.rotation.eulerAngles.x, minXRotation, maxXRotation);
         rb.rotation = Quaternion.Euler(xRotation, rb.rotation.eulerAngles.y, 0);
-
-
     }
 
     float ClampAngle(float val, float min, float max)
