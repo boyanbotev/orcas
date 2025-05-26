@@ -20,10 +20,15 @@ public class OpponentController : MonoBehaviour
     [SerializeField] float attackDistance = 5f;
     [SerializeField] float moveSpeed;
     [SerializeField] float boostSpeed;
+    [SerializeField] float turnSpeed = 2.5f;
+    [SerializeField] float minBoostDelay = 0.42f;
+    [SerializeField] float maxBoostDelay = 0.8f;
+    [SerializeField] float decisionInterval = 1f;
 
     void Start()
     {
-        InvokeRepeating("ChooseBehaviour", 0f, 1f);
+        rb = GetComponent<Rigidbody>();
+        InvokeRepeating("ChooseBehaviour", 0f, decisionInterval);
         StartCoroutine(BoostTriggerRoutine());
     }
 
@@ -48,7 +53,6 @@ public class OpponentController : MonoBehaviour
     bool IsBehindBall()
     {
         Vector3 toBall = ball.position - transform.position;
-        Debug.Log($"To Ball: {toBall}, Play Direction: {playDirection}, dot {Vector3.Dot(toBall, playDirection)}");
         return Vector3.Dot(toBall, playDirection) > 0;
     }
 
@@ -66,8 +70,6 @@ public class OpponentController : MonoBehaviour
         Vector3 direction = (targetPos - transform.position).normalized;
         Quaternion targetRotation = Quaternion.LookRotation(direction);
 
-        rb = GetComponent<Rigidbody>();
-
         float speed;
         if (movementState == OrcaState.Boosting)
         {
@@ -79,12 +81,12 @@ public class OpponentController : MonoBehaviour
         }
 
         rb.AddForce(transform.forward * speed * Time.deltaTime, ForceMode.VelocityChange);
-        rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, Time.deltaTime * 2.5f));
+        rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, Time.deltaTime * turnSpeed));
     }
     IEnumerator BoostTriggerRoutine()
     {
         Boost();
-        var waitTime = GetRandomDelay(0.42f, 0.8f); // was 0.5f, 1f
+        var waitTime = GetRandomDelay(minBoostDelay, maxBoostDelay);
         yield return new WaitForSeconds(waitTime);
         StartCoroutine(BoostTriggerRoutine());
     }
