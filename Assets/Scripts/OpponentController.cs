@@ -86,9 +86,14 @@ public class OpponentController : MonoBehaviour
     IEnumerator BoostTriggerRoutine()
     {
         Boost();
-        var waitTime = GetRandomDelay(minBoostDelay, maxBoostDelay);
+        var waitTime = IsNearTarget() ? maxBoostDelay : minBoostDelay;
         yield return new WaitForSeconds(waitTime);
         StartCoroutine(BoostTriggerRoutine());
+    }
+
+    bool IsNearTarget()
+    {
+        return Vector3.Distance(transform.position, targetPos) < attackDistance;
     }
 
     float GetRandomDelay(float min, float max)
