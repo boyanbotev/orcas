@@ -3,11 +3,12 @@ using System.Collections;
 
 enum OpponentState
 {
+    Idle,
     Navigating,
     Attacking,
 }
 
-public class OpponentController : MonoBehaviour
+public class OpponentController : MonoBehaviour, IResetable
 {
     private OrcaState movementState = OrcaState.Swimming;
     private OpponentState currentBehaviour = OpponentState.Navigating;
@@ -32,8 +33,29 @@ public class OpponentController : MonoBehaviour
         StartCoroutine(BoostTriggerRoutine());
     }
 
+    public void StartRound()
+    {
+        rb.angularVelocity = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
+        transform.rotation = Quaternion.LookRotation(playDirection);
+    }
+
+    public void SetIdle()
+    {
+        currentBehaviour = OpponentState.Idle;
+        movementState = OrcaState.Idle;
+    }
+
+    public void SetActive()
+    {
+        currentBehaviour = OpponentState.Navigating;
+        movementState = OrcaState.Swimming;
+    }
+
     void Boost()
     {
+        if (movementState != OrcaState.Swimming)
+            return;
         movementState = OrcaState.Boosting;
         StartCoroutine(BoostRoutine());
     }
@@ -58,7 +80,11 @@ public class OpponentController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (currentBehaviour == OpponentState.Attacking)
+        if (currentBehaviour == OpponentState.Idle)
+        {
+            return;
+        }
+        else if (currentBehaviour == OpponentState.Attacking)
         {
             targetPos = ball.position;
         }
@@ -106,6 +132,7 @@ public class OpponentController : MonoBehaviour
         yield return new WaitForSeconds(boostDuration);
         movementState = OrcaState.Recharging;
         yield return new WaitForSeconds(boostCooldown);
-        movementState = OrcaState.Swimming;
+        if (movementState == OrcaState.Recharging)
+            movementState = OrcaState.Swimming;
     }
 }

@@ -1,16 +1,16 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 enum OrcaState
 {
     Swimming,
     Boosting,
-    Recharging
+    Recharging,
+    Idle
 }
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IResetable
 {
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float boostSpeed = 10f;
@@ -32,6 +32,23 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+    public void SetIdle()
+    {
+        currentState = OrcaState.Idle;
+    }
+
+    public void SetActive()
+    {
+        currentState = OrcaState.Swimming;
+    }
+
+    public void StartRound()
+    {
+        rb.angularVelocity = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
+        transform.rotation = Quaternion.LookRotation(Vector3.forward);
+    }
+
     public void Boost(InputAction.CallbackContext context)
     {
         if (context.phase != InputActionPhase.Performed || currentState != OrcaState.Swimming)
@@ -48,6 +65,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (currentState == OrcaState.Idle) return;
+
         Move();
 
         if (torqueRotation) AddTorque();
@@ -99,6 +118,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(boostDuration);
         currentState = OrcaState.Recharging;
         yield return new WaitForSeconds(boostCooldown);
-        currentState = OrcaState.Swimming;
+        if (currentState == OrcaState.Recharging)
+            currentState = OrcaState.Swimming;
     }
 }
