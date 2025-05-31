@@ -36,11 +36,13 @@ public class Ball : MonoBehaviour, IResetable
     public void SetIdle()
     {
         currentState = BallState.Inactive;
+        rb.isKinematic = true;
     }
 
     public void SetActive()
     {
         currentState = BallState.Active;
+        rb.isKinematic = false;
     }
 
     public void StartRound()

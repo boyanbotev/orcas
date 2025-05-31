@@ -33,7 +33,5 @@ public class CameraController : MonoBehaviour
     {
         cineCamera.LookAt = player;
         cineCamera.Follow = player;
-        //cameraFollow.TrackerSettings.PositionDamping = new Vector3(1, 1, 1);
-        //cameraFollow.TrackerSettings.RotationDamping = new Vector3(1, 1, 1);
     }
 }

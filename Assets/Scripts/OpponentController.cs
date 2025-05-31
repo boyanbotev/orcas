@@ -47,12 +47,14 @@ public class OpponentController : MonoBehaviour, IResetable
     {
         currentBehaviour = OpponentState.Idle;
         movementState = OrcaState.Idle;
+        rb.isKinematic = true;
     }
 
     public void SetActive()
     {
         currentBehaviour = OpponentState.Navigating;
         movementState = OrcaState.Swimming;
+        rb.isKinematic = false;
     }
 
     void Boost()
@@ -149,14 +151,11 @@ public class OpponentController : MonoBehaviour, IResetable
         return Vector3.Distance(transform.position, targetPos) < attackDistance;
     }
 
-    float GetRandomDelay(float min, float max)
-    {
-        return Random.Range(min, max);
-    }
-
     IEnumerator BoostRoutine()
     {
         yield return new WaitForSeconds(boostDuration);
+        if (movementState != OrcaState.Boosting)
+            yield break;
         movementState = OrcaState.Recharging;
         yield return new WaitForSeconds(boostCooldown);
         if (movementState == OrcaState.Recharging)

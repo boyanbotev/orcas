@@ -65,7 +65,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -62.01328, y: -17.871296, z: -139.82533}
-  m_LocalScale: {x: 1, y: 900, z: 600}
+  m_LocalScale: {x: 1, y: 600, z: 600}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7145846986972352483}
@@ -173,7 +173,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -62, y: 273, z: -139.82533}
-  m_LocalScale: {x: 1, y: 900, z: 700}
+  m_LocalScale: {x: 1, y: 600, z: 700}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7145846986972352483}
@@ -209,7 +209,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 070a6ea7ad8539c4884f677150c6c7af, type: 2}
+  - {fileID: 2100000, guid: 89ac13da911152b45a05095f3a47e28b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -281,7 +281,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -62.01328, y: -17.871296, z: -295.98874}
-  m_LocalScale: {x: 1, y: 900, z: 600}
+  m_LocalScale: {x: 1, y: 600, z: 500}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7145846986972352483}
@@ -389,7 +389,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 137.98672, y: -17.871296, z: -139.82533}
-  m_LocalScale: {x: 1, y: 900, z: 600}
+  m_LocalScale: {x: 1, y: 600, z: 600}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7145846986972352483}
@@ -497,7 +497,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -62.01328, y: -17.871296, z: 104.01127}
-  m_LocalScale: {x: 1, y: 900, z: 600}
+  m_LocalScale: {x: 1, y: 600, z: 500}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7145846986972352483}

@@ -83,12 +83,8 @@ public class GameManager : MonoBehaviour
 
     private void LoadRound()
     {
-        if (rounds <= 0)
-        {
-            Debug.Log("Game Over! Final Score - Player: " + playerScore + ", Opponents: " + opponentScore);
-            Time.timeScale = 0f;
-            return;
-        }
+        OnCountdownStart?.Invoke();
+        cameraController.TransitionTo(player.position, playerStartPosition);
 
         for (int i = 0; i < opponents.Length; i++)
         {
@@ -106,33 +102,46 @@ public class GameManager : MonoBehaviour
         ball.GetComponent<IResetable>().StartRound();
     }
 
-
-    IEnumerator StartRoundRoutine()
+    void Disable()
     {
-        rounds--;
-        OnRoundConclusion?.Invoke(lastRoundConclusion);
-
         ball.GetComponent<IResetable>().SetIdle();
         player.GetComponent<IResetable>().SetIdle();
         foreach (var opponent in opponents)
         {
             opponent.GetComponent<IResetable>().SetIdle();
         }
+    }
 
-        yield return new WaitForSecondsRealtime(roundEndDelay);
-        if (rounds > 0) cameraController.TransitionTo(player.position, playerStartPosition);
-        LoadRound();
-        OnCountdownStart?.Invoke();
-
-        yield return new WaitForSecondsRealtime(roundStartDelay);
-        OnRoundStart?.Invoke();
-
+    void Enable()
+    {
         player.GetComponent<IResetable>().SetActive();
         ball.GetComponent<IResetable>().SetActive();
         foreach (var opponent in opponents)
         {
             opponent.GetComponent<IResetable>().SetActive();
         }
+    }
+
+    void EndLevel()
+    {
+        Debug.Log("Game Over! Final Score - Player: " + playerScore + ", Opponents: " + opponentScore);
+        Time.timeScale = 0f;
+    }
+
+    IEnumerator StartRoundRoutine()
+    {
+        rounds--;
+        OnRoundConclusion?.Invoke(lastRoundConclusion);
+        Disable();
+
+        yield return new WaitForSecondsRealtime(roundEndDelay);
+
+        if (rounds > 0) LoadRound();
+        else EndLevel();
+
+        yield return new WaitForSecondsRealtime(roundStartDelay);
+        OnRoundStart?.Invoke();
+        Enable();
 
         cameraController.TransitionEnd();
     }

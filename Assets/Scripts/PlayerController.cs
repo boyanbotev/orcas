@@ -43,11 +43,13 @@ public class PlayerController : MonoBehaviour, IResetable
             _boostCoroutineReference = null;
         }
         isBoostButtonPressed = false;
+        rb.isKinematic = true;
     }
 
     public void SetActive()
     {
         currentState = OrcaState.Swimming;
+        rb.isKinematic = false;
     }
 
     public void StartRound()
