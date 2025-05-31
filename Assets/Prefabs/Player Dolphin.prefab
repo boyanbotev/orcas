@@ -49,8 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0
   boostSpeed: 100
-  boostDuration: 0.2
-  boostCooldown: 0.1
+  boostDuration: 0.19
+  boostCooldown: 0.21
   turnSpeed: 2
   strafeSpeed: 50
   verticalStrafeSpeed: 50

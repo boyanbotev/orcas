@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 734623c5386ee4442bf6c6b5cf13a4ca, type: 2}
     - target: {fileID: 919132149155446097, guid: e52a385ddf1365341855c87ff7e1c5d7, type: 3}
       propertyPath: m_Name
-      value: Orca
+      value: Player Orca
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0
   boostSpeed: 80
-  boostDuration: 0.2
+  boostDuration: 0.15
   boostCooldown: 0.2
   turnSpeed: 4
   strafeSpeed: 50

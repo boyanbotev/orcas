@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour, IResetable
     [SerializeField] bool torqueRotation = true;
 
     Rigidbody rb;
+    private bool isBoostButtonPressed;
+    private Coroutine _boostCoroutineReference = null;
 
     void Awake()
     {
@@ -35,6 +37,12 @@ public class PlayerController : MonoBehaviour, IResetable
     public void SetIdle()
     {
         currentState = OrcaState.Idle;
+        if (_boostCoroutineReference != null)
+        {
+            StopCoroutine(_boostCoroutineReference);
+            _boostCoroutineReference = null;
+        }
+        isBoostButtonPressed = false;
     }
 
     public void SetActive()
@@ -51,11 +59,20 @@ public class PlayerController : MonoBehaviour, IResetable
 
     public void Boost(InputAction.CallbackContext context)
     {
-        if (context.phase != InputActionPhase.Performed || currentState != OrcaState.Swimming)
-            return;
+        Debug.Log("started" + context.started + currentState + _boostCoroutineReference);
+        if (context.started)
+        {
+            isBoostButtonPressed = true;
 
-        currentState = OrcaState.Boosting;
-        StartCoroutine(BoostRoutine());
+            if (currentState == OrcaState.Swimming && _boostCoroutineReference == null)
+            {
+                _boostCoroutineReference = StartCoroutine(BoostRoutine());
+            }
+        }
+        else if (context.canceled)
+        {
+            isBoostButtonPressed = false;
+        }
     }
 
     public void SetDir(InputAction.CallbackContext context)
@@ -115,10 +132,32 @@ public class PlayerController : MonoBehaviour, IResetable
 
     IEnumerator BoostRoutine()
     {
+        currentState = OrcaState.Boosting;
         yield return new WaitForSeconds(boostDuration);
-        currentState = OrcaState.Recharging;
-        yield return new WaitForSeconds(boostCooldown);
+
+        if (currentState == OrcaState.Boosting)
+        {
+            currentState = OrcaState.Recharging;
+            yield return new WaitForSeconds(boostCooldown);
+        } else
+        {
+            _boostCoroutineReference = null;
+            yield break;
+        }
+
         if (currentState == OrcaState.Recharging)
-            currentState = OrcaState.Swimming;
+        {
+            if (isBoostButtonPressed)
+            {
+                _boostCoroutineReference = StartCoroutine(BoostRoutine());
+            } else
+            {
+                currentState = OrcaState.Swimming;
+                _boostCoroutineReference = null;
+            }
+        } else
+        {
+            _boostCoroutineReference = null;
+        }
     }
 }
