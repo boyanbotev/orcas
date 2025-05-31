@@ -61,7 +61,6 @@ public class PlayerController : MonoBehaviour, IResetable
 
     public void Boost(InputAction.CallbackContext context)
     {
-        Debug.Log("started" + context.started + currentState + _boostCoroutineReference);
         if (context.started)
         {
             isBoostButtonPressed = true;

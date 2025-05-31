@@ -130,7 +130,7 @@ MonoBehaviour:
   minBoostDelay: 0.35
   maxBoostDelay: 0.8
   decisionInterval: 1
-  avoidOffsetScale: 10
+  avoidOffsetScale: 14
 --- !u!1001 &6840604957382852756
 PrefabInstance:
   m_ObjectHideFlags: 0

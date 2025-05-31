@@ -1,24 +1,24 @@
 using UnityEngine;
 using System.Collections;
-using Unity.VisualScripting;
 
-enum OpponentState
+public enum OpponentState
 {
     Idle,
     Navigating,
     Attacking,
+    Defending,
 }
 
 public class OpponentController : MonoBehaviour, IResetable
 {
     private OrcaState movementState = OrcaState.Swimming;
-    private OpponentState currentBehaviour = OpponentState.Navigating;
-    private Vector3 targetPos;
-    Rigidbody rb;
+    protected OpponentState currentBehaviour = OpponentState.Navigating;
+    protected Vector3 targetPos;
+    protected Rigidbody rb;
     [SerializeField] float boostDuration = 0.2f;
     [SerializeField] float boostCooldown = 1f;
-    [SerializeField] Transform ball;
-    [SerializeField] Vector3 playDirection;
+    [SerializeField] protected Transform ball;
+    [SerializeField] protected Vector3 playDirection;
     [SerializeField] float attackDistance = 5f;
     [SerializeField] float moveSpeed;
     [SerializeField] float boostSpeed;
@@ -61,20 +61,14 @@ public class OpponentController : MonoBehaviour, IResetable
     {
         if (movementState != OrcaState.Swimming)
             return;
+
         movementState = OrcaState.Boosting;
         StartCoroutine(BoostRoutine());
     }
 
-    void ChooseBehaviour()
+    protected virtual void ChooseBehaviour()
     {
-        if (IsBehindBall())
-        {
-            currentBehaviour = OpponentState.Attacking;
-        }
-        else
-        {
-            currentBehaviour = OpponentState.Navigating;
-        }
+        currentBehaviour = IsBehindBall() ? OpponentState.Attacking : OpponentState.Navigating;
     }
 
     bool IsBehindBall()
@@ -86,34 +80,28 @@ public class OpponentController : MonoBehaviour, IResetable
     private void FixedUpdate()
     {
         if (currentBehaviour == OpponentState.Idle)
-        {
             return;
-        }
-        else if (currentBehaviour == OpponentState.Attacking)
+
+        targetPos = ChooseTargetPos();
+        Vector3 direction = (targetPos - transform.position).normalized;
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        float speed = movementState == OrcaState.Boosting ? boostSpeed : moveSpeed;
+
+        rb.AddForce(transform.forward * speed * Time.deltaTime, ForceMode.VelocityChange);
+        rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, Time.deltaTime * turnSpeed));
+    }
+
+    protected virtual Vector3 ChooseTargetPos()
+    {
+        if (currentBehaviour == OpponentState.Attacking)
         {
-            targetPos = ball.position;
+            return ball.position;
         }
         else
         {
             var posBehindBall = ball.position - playDirection * attackDistance;
-            targetPos = GetOffsetTarget(transform.position, ball.position, posBehindBall);
+            return GetOffsetTarget(transform.position, ball.position, posBehindBall);
         }
-
-        Vector3 direction = (targetPos - transform.position).normalized;
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
-
-        float speed;
-        if (movementState == OrcaState.Boosting)
-        {
-            speed = boostSpeed;
-        }
-        else
-        {
-            speed = moveSpeed;
-        }
-
-        rb.AddForce(transform.forward * speed * Time.deltaTime, ForceMode.VelocityChange);
-        rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, Time.deltaTime * turnSpeed));
     }
 
     /// <summary>

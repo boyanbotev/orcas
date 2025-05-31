@@ -104,7 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0
   boostSpeed: 80
-  boostDuration: 0.15
+  boostDuration: 0.16
   boostCooldown: 0.2
   turnSpeed: 4
   strafeSpeed: 50
