@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0.28627455, g: 0.7180795, b: 1, a: 0.08627451}
   m_FogMode: 3
-  m_FogDensity: 0.002
+  m_FogDensity: 0.0023
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -311,12 +311,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 856702106762323189, guid: 39c1c2cdb6db9784f8de62a3088a35b8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 856702106762323189, guid: 39c1c2cdb6db9784f8de62a3088a35b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 856702106762323189, guid: 39c1c2cdb6db9784f8de62a3088a35b8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 856702106762323189, guid: 39c1c2cdb6db9784f8de62a3088a35b8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -451,7 +455,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12218328, y: -0.0000000035270618, z: 4.3420123e-10, w: 0.9925076}
+  m_LocalRotation: {x: 0.122183226, y: -0.00000030237064, z: 0.000000037223515, w: 0.9925076}
   m_LocalPosition: {x: 0, y: 5, z: -182}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1127,7 +1131,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1011393855}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12218326, y: -0.0000000035270615, z: 4.3420076e-10, w: 0.99250764}
+  m_LocalRotation: {x: 0.12218322, y: -0.00000030237064, z: 0.000000037223497, w: 0.99250764}
   m_LocalPosition: {x: 0, y: 5, z: -182}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
