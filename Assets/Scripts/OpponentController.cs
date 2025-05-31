@@ -25,6 +25,8 @@ public class OpponentController : MonoBehaviour, IResetable
     [SerializeField] float minBoostDelay = 0.42f;
     [SerializeField] float maxBoostDelay = 0.8f;
     [SerializeField] float decisionInterval = 1f;
+    [Tooltip("The amount which the ai tries to avoid hitting the ball as it navigates to be behind it")]
+    [SerializeField] float avoidOffsetScale = 10f;
 
     void Start()
     {
@@ -90,7 +92,8 @@ public class OpponentController : MonoBehaviour, IResetable
         }
         else
         {
-            targetPos = ball.position - playDirection * attackDistance;
+            var posBehindBall = ball.position - playDirection * attackDistance;
+            targetPos = GetOffsetTarget(transform.position, ball.position, posBehindBall);
         }
 
         Vector3 direction = (targetPos - transform.position).normalized;
@@ -109,6 +112,25 @@ public class OpponentController : MonoBehaviour, IResetable
         rb.AddForce(transform.forward * speed * Time.deltaTime, ForceMode.VelocityChange);
         rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, Time.deltaTime * turnSpeed));
     }
+
+    /// <summary>
+    /// Offset the position behind the ball to be on the side of the ball the opponent is already on
+    /// to avoid collision with the ball as the opponent tries to get behind it.
+    /// </summary>
+    Vector3 GetOffsetTarget(Vector3 a, Vector3 b, Vector3 c)
+    {
+        Vector3 ac = c - a;
+        Vector3 bc = c - b;
+
+        float t = Vector3.Dot(bc, ac) / Vector3.Dot(ac, ac);
+        Vector3 d = a + t * ac;
+
+        Vector3 bd = d - b;
+        var offset = bd.normalized * avoidOffsetScale;
+
+        return c + offset;
+    }
+
     IEnumerator BoostTriggerRoutine()
     {
         Boost();
