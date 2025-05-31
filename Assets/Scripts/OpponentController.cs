@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 
 enum OpponentState
 {
@@ -121,15 +122,19 @@ public class OpponentController : MonoBehaviour, IResetable
     {
         Vector3 ac = c - a;
         Vector3 bc = c - b;
+        Vector3 ab = b - a;
 
         float t = Vector3.Dot(bc, ac) / Vector3.Dot(ac, ac);
         Vector3 d = a + t * ac;
 
         Vector3 bd = d - b;
-        var offset = bd.normalized * avoidOffsetScale;
+
+        var parallelismMultiplier = (Vector3.Dot(ac.normalized, ab.normalized) + 1) / 2;
+        var offset = bd.normalized * avoidOffsetScale * parallelismMultiplier;
 
         return c + offset;
     }
+
 
     IEnumerator BoostTriggerRoutine()
     {

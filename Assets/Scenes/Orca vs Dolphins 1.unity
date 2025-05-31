@@ -1811,6 +1811,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1011393858}
     - target: {fileID: 5916857614954832632, guid: 681de8f9cb69a2f43922a81e09ab220b, type: 3}
+      propertyPath: opponents.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5916857614954832632, guid: 681de8f9cb69a2f43922a81e09ab220b, type: 3}
       propertyPath: 'opponents.Array.data[0]'
       value: 
       objectReference: {fileID: 963203260}
@@ -1822,6 +1826,38 @@ PrefabInstance:
       propertyPath: 'opponents.Array.data[2]'
       value: 
       objectReference: {fileID: 2079146544}
+    - target: {fileID: 5916857614954832632, guid: 681de8f9cb69a2f43922a81e09ab220b, type: 3}
+      propertyPath: 'opponents.Array.data[3]'
+      value: 
+      objectReference: {fileID: 479525691}
+    - target: {fileID: 5916857614954832632, guid: 681de8f9cb69a2f43922a81e09ab220b, type: 3}
+      propertyPath: 'opponents.Array.data[4]'
+      value: 
+      objectReference: {fileID: 1971974429}
+    - target: {fileID: 5916857614954832632, guid: 681de8f9cb69a2f43922a81e09ab220b, type: 3}
+      propertyPath: 'opponents.Array.data[5]'
+      value: 
+      objectReference: {fileID: 1624422460}
+    - target: {fileID: 5916857614954832632, guid: 681de8f9cb69a2f43922a81e09ab220b, type: 3}
+      propertyPath: 'opponents.Array.data[6]'
+      value: 
+      objectReference: {fileID: 660872129}
+    - target: {fileID: 5916857614954832632, guid: 681de8f9cb69a2f43922a81e09ab220b, type: 3}
+      propertyPath: 'opponents.Array.data[7]'
+      value: 
+      objectReference: {fileID: 1220740505}
+    - target: {fileID: 5916857614954832632, guid: 681de8f9cb69a2f43922a81e09ab220b, type: 3}
+      propertyPath: 'opponents.Array.data[8]'
+      value: 
+      objectReference: {fileID: 1375734653}
+    - target: {fileID: 5916857614954832632, guid: 681de8f9cb69a2f43922a81e09ab220b, type: 3}
+      propertyPath: 'opponents.Array.data[9]'
+      value: 
+      objectReference: {fileID: 1222082916}
+    - target: {fileID: 5916857614954832632, guid: 681de8f9cb69a2f43922a81e09ab220b, type: 3}
+      propertyPath: 'opponents.Array.data[10]'
+      value: 
+      objectReference: {fileID: 1287417506}
     - target: {fileID: 7860618019058911958, guid: 681de8f9cb69a2f43922a81e09ab220b, type: 3}
       propertyPath: player
       value: 

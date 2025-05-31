@@ -80,11 +80,11 @@ MonoBehaviour:
   attackDistance: 20
   moveSpeed: 0
   boostSpeed: 80
-  turnSpeed: 2.2
+  turnSpeed: 2.5
   minBoostDelay: 0.8
   maxBoostDelay: 2
   decisionInterval: 0.7
-  avoidOffsetScale: 10
+  avoidOffsetScale: 12
 --- !u!1001 &255516108917792071
 PrefabInstance:
   m_ObjectHideFlags: 0
