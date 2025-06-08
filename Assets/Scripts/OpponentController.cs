@@ -84,7 +84,6 @@ public class OpponentController : MonoBehaviour, IResetable
     {
         if (currentBehaviour == OpponentState.Idle)
             return;
-        Debug.Log("update is firing" + currentBehaviour + " " + movementState);
 
         targetPos = ChooseTargetPos();
         Vector3 direction = (targetPos - transform.position).normalized;

@@ -354,6 +354,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5830738498901472726, guid: 39c1c2cdb6db9784f8de62a3088a35b8, type: 3}
+      propertyPath: m_Size.y
+      value: 0.8195186
+      objectReference: {fileID: 0}
+    - target: {fileID: 5830738498901472726, guid: 39c1c2cdb6db9784f8de62a3088a35b8, type: 3}
+      propertyPath: m_Center.y
+      value: 0.063364126
+      objectReference: {fileID: 0}
+    - target: {fileID: 7481918871630634897, guid: 39c1c2cdb6db9784f8de62a3088a35b8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9178939584731179095, guid: 39c1c2cdb6db9784f8de62a3088a35b8, type: 3}
       propertyPath: m_Name
       value: Bounding
@@ -1199,7 +1211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BoundingVolume: {fileID: 235004309}
-  SlowingDistance: 0
+  SlowingDistance: 1
 --- !u!4 &1055673877 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9105206575443222116, guid: fa763bdc67aff8d499525a49c449b125, type: 3}
