@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class DefenderController : OpponentController
@@ -14,6 +13,9 @@ public class DefenderController : OpponentController
 
     protected override void ChooseBehaviour()
     {
+        if (currentBehaviour == OpponentState.Idle)
+            return;
+
         if (ShouldDefend())
         {
             currentBehaviour = OpponentState.Defending;

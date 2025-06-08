@@ -68,6 +68,9 @@ public class OpponentController : MonoBehaviour, IResetable
 
     protected virtual void ChooseBehaviour()
     {
+        if (currentBehaviour == OpponentState.Idle)
+            return;
+
         currentBehaviour = IsBehindBall() ? OpponentState.Attacking : OpponentState.Navigating;
     }
 
@@ -81,6 +84,7 @@ public class OpponentController : MonoBehaviour, IResetable
     {
         if (currentBehaviour == OpponentState.Idle)
             return;
+        Debug.Log("update is firing" + currentBehaviour + " " + movementState);
 
         targetPos = ChooseTargetPos();
         Vector3 direction = (targetPos - transform.position).normalized;
