@@ -21,6 +21,7 @@ public class OpponentController : MonoBehaviour, IResetable
     [SerializeField] protected Vector3 playDirection;
     [SerializeField] float attackDistance = 5f;
     [SerializeField] float moveSpeed;
+    [Tooltip("This makes a large difference to how difficult the enemy feels to play against")]
     [SerializeField] float boostSpeed;
     [SerializeField] float turnSpeed = 2.5f;
     [SerializeField] float minBoostDelay = 0.42f;

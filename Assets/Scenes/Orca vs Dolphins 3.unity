@@ -807,7 +807,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4978833289898506236, guid: 126ad2d0950419a4192b1ef34325c047, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5922194094298889669, guid: 126ad2d0950419a4192b1ef34325c047, type: 3}
       propertyPath: m_IsActive
@@ -1459,14 +1459,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dolphin Striker
       objectReference: {fileID: 0}
-    - target: {fileID: 4978833289898506236, guid: 649ae62f5f2a75c47acab8773d8b6b4c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8087168489371083556, guid: 649ae62f5f2a75c47acab8773d8b6b4c, type: 3}
       propertyPath: ball
       value: 
       objectReference: {fileID: 1055673877}
+    - target: {fileID: 8087168489371083556, guid: 649ae62f5f2a75c47acab8773d8b6b4c, type: 3}
+      propertyPath: attackDistance
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 8139221119517358303, guid: 649ae62f5f2a75c47acab8773d8b6b4c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -34.613277
@@ -2106,7 +2106,7 @@ PrefabInstance:
     - target: {fileID: 5916857614954832632, guid: 681de8f9cb69a2f43922a81e09ab220b, type: 3}
       propertyPath: 'opponents.Array.data[6]'
       value: 
-      objectReference: {fileID: 660872129}
+      objectReference: {fileID: 602239417}
     - target: {fileID: 5916857614954832632, guid: 681de8f9cb69a2f43922a81e09ab220b, type: 3}
       propertyPath: 'opponents.Array.data[7]'
       value: 
