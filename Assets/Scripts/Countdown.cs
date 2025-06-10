@@ -26,13 +26,13 @@ public class Countdown : MonoBehaviour
     private void DisplayPlayerGoal()
     {
         countdownText.text = "GOAL";
-        countdownText.color = new Color(1, 0, 0, 1);
+        countdownText.color = new Color(1, 1, 1, 1);
     }
 
     private void DisplayOpponentGoal()
     {
         countdownText.text = "ENEMY GOAL";
-        countdownText.color = new Color(1, 0, 0, 1);
+        countdownText.color = new Color(1, 1, 1, 1);
     }
 
     private void Count()
