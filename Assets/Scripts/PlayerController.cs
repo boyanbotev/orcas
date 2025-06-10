@@ -26,12 +26,14 @@ public class PlayerController : MonoBehaviour, IResetable
     [SerializeField] bool torqueRotation = true;
 
     Rigidbody rb;
+    private OrcaAnimation anim;
     private bool isBoostButtonPressed;
     private Coroutine _boostCoroutineReference = null;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        anim = GetComponent<OrcaAnimation>();
     }
 
     public void SetIdle()
@@ -73,6 +75,7 @@ public class PlayerController : MonoBehaviour, IResetable
         else if (context.canceled)
         {
             isBoostButtonPressed = false;
+            anim.StopBoost();
         }
     }
 
@@ -134,14 +137,17 @@ public class PlayerController : MonoBehaviour, IResetable
     IEnumerator BoostRoutine()
     {
         currentState = OrcaState.Boosting;
+        anim.StartBoost();
         yield return new WaitForSeconds(boostDuration);
 
         if (currentState == OrcaState.Boosting)
         {
             currentState = OrcaState.Recharging;
+            anim.StopBoost();
             yield return new WaitForSeconds(boostCooldown);
         } else
         {
+            anim.StopBoost();
             _boostCoroutineReference = null;
             yield break;
         }
@@ -155,9 +161,11 @@ public class PlayerController : MonoBehaviour, IResetable
             {
                 currentState = OrcaState.Swimming;
                 _boostCoroutineReference = null;
+                anim.StopBoost();
             }
         } else
         {
+            anim.StopBoost();
             _boostCoroutineReference = null;
         }
     }
