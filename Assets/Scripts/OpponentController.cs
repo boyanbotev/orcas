@@ -29,12 +29,14 @@ public class OpponentController : MonoBehaviour, IResetable
     [SerializeField] float decisionInterval = 1f;
     [Tooltip("The amount which the ai tries to avoid hitting the ball as it navigates to be behind it")]
     [SerializeField] float avoidOffsetScale = 10f;
+    OrcaAnimation anim;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         InvokeRepeating("ChooseBehaviour", 0f, decisionInterval);
         StartCoroutine(BoostTriggerRoutine());
+        anim = GetComponentInChildren<OrcaAnimation>();
     }
 
     public void StartRound()
@@ -145,9 +147,12 @@ public class OpponentController : MonoBehaviour, IResetable
 
     IEnumerator BoostRoutine()
     {
+        anim?.StartBoost();
         yield return new WaitForSeconds(boostDuration);
+        anim?.StopBoost();
         if (movementState != OrcaState.Boosting)
             yield break;
+
         movementState = OrcaState.Recharging;
         yield return new WaitForSeconds(boostCooldown);
         if (movementState == OrcaState.Recharging)

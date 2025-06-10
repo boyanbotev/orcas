@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Orca vs Dolphins 3.unity
+    guid: 77a8227576ca15a41b81ffa1c97e3a9b
+  - enabled: 1
     path: Assets/Scenes/Orca vs Dolphins 2.unity
     guid: 3c4a442fa527a5248b5654abc14d1677
   - enabled: 1

@@ -104,7 +104,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Metallic: 0
+    - _Metallic: 0.156
     - _MultiplyRipples: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -115,7 +115,7 @@ Material:
     - _RippleSpeed: 2
     - _RippleStrength: 0.2
     - _SampleGI: 0
-    - _Smoothness: 1
+    - _Smoothness: 0.071
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 0
     - _SrcBlend: 1
