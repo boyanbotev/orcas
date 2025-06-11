@@ -38,9 +38,11 @@ public class DefenderController : OpponentController
     {
         if (currentBehaviour == OpponentState.Defending)
         {
+            var anticipatedPos = GetAnticipatedTarget(ball.position);
+
             return new Vector3(
-                ball.position.x + initialPosition.x,
-                ball.position.y,
+                anticipatedPos.x + initialPosition.x,
+                anticipatedPos.y,
                 initialPosition.z
             );
         }
@@ -61,6 +63,7 @@ public class DefenderController : OpponentController
             rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, Time.deltaTime * turnSpeed));
             return;
         }
+
         base.Move(targetPos);
    }
 }
