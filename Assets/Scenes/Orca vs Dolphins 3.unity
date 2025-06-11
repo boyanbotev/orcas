@@ -815,9 +815,17 @@ PrefabInstance:
       propertyPath: ball
       value: 
       objectReference: {fileID: 1055673877}
+    - target: {fileID: 808965486962954246, guid: 1874d7b1de6363c48b94c282df1ff36f, type: 3}
+      propertyPath: anticipateTargetAmount
+      value: 0.04
+      objectReference: {fileID: 0}
     - target: {fileID: 4978833289898506236, guid: 1874d7b1de6363c48b94c282df1ff36f, type: 3}
       propertyPath: m_Name
-      value: Defender Dolphin
+      value: Goalie Dolphin
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978833289898506236, guid: 1874d7b1de6363c48b94c282df1ff36f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8139221119517358303, guid: 1874d7b1de6363c48b94c282df1ff36f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -884,6 +892,10 @@ PrefabInstance:
     - target: {fileID: 4978833289898506236, guid: 1874d7b1de6363c48b94c282df1ff36f, type: 3}
       propertyPath: m_Name
       value: Defender Dolphin (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978833289898506236, guid: 1874d7b1de6363c48b94c282df1ff36f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8139221119517358303, guid: 1874d7b1de6363c48b94c282df1ff36f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1189,6 +1201,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Defender Dolphin (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4978833289898506236, guid: 1874d7b1de6363c48b94c282df1ff36f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8139221119517358303, guid: 1874d7b1de6363c48b94c282df1ff36f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -25.1
@@ -1250,6 +1266,10 @@ PrefabInstance:
     - target: {fileID: 4978833289898506236, guid: 126ad2d0950419a4192b1ef34325c047, type: 3}
       propertyPath: m_Name
       value: Dolphin (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978833289898506236, guid: 126ad2d0950419a4192b1ef34325c047, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5922194094298889669, guid: 126ad2d0950419a4192b1ef34325c047, type: 3}
       propertyPath: m_IsActive
@@ -1320,6 +1340,10 @@ PrefabInstance:
     - target: {fileID: 4978833289898506236, guid: 649ae62f5f2a75c47acab8773d8b6b4c, type: 3}
       propertyPath: m_Name
       value: Dolphin Striker
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978833289898506236, guid: 649ae62f5f2a75c47acab8773d8b6b4c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8087168489371083556, guid: 649ae62f5f2a75c47acab8773d8b6b4c, type: 3}
       propertyPath: ball
@@ -1513,6 +1537,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Defender Dolphin (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4978833289898506236, guid: 1874d7b1de6363c48b94c282df1ff36f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8139221119517358303, guid: 1874d7b1de6363c48b94c282df1ff36f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.4
@@ -1648,6 +1676,10 @@ PrefabInstance:
     - target: {fileID: 4978833289898506236, guid: 126ad2d0950419a4192b1ef34325c047, type: 3}
       propertyPath: m_Name
       value: Dolphin (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978833289898506236, guid: 126ad2d0950419a4192b1ef34325c047, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5922194094298889669, guid: 126ad2d0950419a4192b1ef34325c047, type: 3}
       propertyPath: m_IsActive
@@ -2105,6 +2137,10 @@ PrefabInstance:
     - target: {fileID: 4978833289898506236, guid: 126ad2d0950419a4192b1ef34325c047, type: 3}
       propertyPath: m_Name
       value: Dolphin
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978833289898506236, guid: 126ad2d0950419a4192b1ef34325c047, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5922194094298889669, guid: 126ad2d0950419a4192b1ef34325c047, type: 3}
       propertyPath: m_IsActive

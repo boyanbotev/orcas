@@ -131,6 +131,7 @@ MonoBehaviour:
   maxBoostDelay: 0.5
   decisionInterval: 0.5
   avoidOffsetScale: 13
+  anticipateTargetAmount: 0.04
   defendRadius: 80
   localeRadius: 80
   initialPosition: {x: 0, y: 0, z: 0}

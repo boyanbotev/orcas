@@ -32,7 +32,7 @@ public class DefenderController : OpponentController
         var isWithinLocale = Mathf.Abs(initialPosition.z - ball.position.z) < localeRadius;
 
         return currentBehaviour != OpponentState.Defending && !isWithinLocale ||
-               (currentBehaviour == OpponentState.Defending && !isNearBall);
+               (currentBehaviour == OpponentState.Defending && (!isNearBall || !isWithinLocale));
     }
     protected override Vector3 ChooseTargetPos()
     {
@@ -49,4 +49,18 @@ public class DefenderController : OpponentController
             return base.ChooseTargetPos();
         }
     }
+
+   protected override void Move(Vector3 targetPos)
+{
+        if (currentBehaviour == OpponentState.Defending 
+            && Vector3.Distance(targetPos, transform.position) < 5
+        )
+        {
+            Vector3 direction = (targetPos - transform.position).normalized;
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, Time.deltaTime * turnSpeed));
+            return;
+        }
+        base.Move(targetPos);
+   }
 }

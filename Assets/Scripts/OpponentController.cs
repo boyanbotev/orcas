@@ -15,6 +15,7 @@ public class OpponentController : MonoBehaviour, IResetable
     protected OpponentState currentBehaviour = OpponentState.Navigating;
     protected Vector3 targetPos;
     protected Rigidbody rb;
+    protected Rigidbody ballRb;
     [SerializeField] float boostDuration = 0.2f;
     [SerializeField] float boostCooldown = 1f;
     [SerializeField] protected Transform ball;
@@ -23,17 +24,20 @@ public class OpponentController : MonoBehaviour, IResetable
     [SerializeField] float moveSpeed;
     [Tooltip("This makes a large difference to how difficult the enemy feels to play against")]
     [SerializeField] float boostSpeed;
-    [SerializeField] float turnSpeed = 2.5f;
+    [SerializeField] protected float turnSpeed = 2.5f;
     [SerializeField] float minBoostDelay = 0.42f;
     [SerializeField] float maxBoostDelay = 0.8f;
     [SerializeField] float decisionInterval = 1f;
     [Tooltip("The amount which the ai tries to avoid hitting the ball as it navigates to be behind it")]
     [SerializeField] float avoidOffsetScale = 10f;
+    [Tooltip("How much to anticipate where the ball will be based on its movement")]
+    [SerializeField] float anticipateTargetAmount = 0;
     OrcaAnimation anim;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        ballRb = ball.GetComponent<Rigidbody>();
         InvokeRepeating("ChooseBehaviour", 0f, decisionInterval);
         StartCoroutine(BoostTriggerRoutine());
         anim = GetComponentInChildren<OrcaAnimation>();
@@ -89,6 +93,11 @@ public class OpponentController : MonoBehaviour, IResetable
             return;
 
         targetPos = ChooseTargetPos();
+        Move(targetPos);
+    }
+
+    protected virtual void Move(Vector3 targetPos)
+    {
         Vector3 direction = (targetPos - transform.position).normalized;
         Quaternion targetRotation = Quaternion.LookRotation(direction);
         float speed = movementState == OrcaState.Boosting ? boostSpeed : moveSpeed;
@@ -101,7 +110,7 @@ public class OpponentController : MonoBehaviour, IResetable
     {
         if (currentBehaviour == OpponentState.Attacking)
         {
-            return ball.position;
+            return GetAnticipatedTarget(ball.position);
         }
         else
         {
@@ -131,8 +140,14 @@ public class OpponentController : MonoBehaviour, IResetable
         return c + offset;
     }
 
+    protected Vector3 GetAnticipatedTarget(Vector3 targetPos)
+    {
+        Vector3 projectedBallMovement = ballRb.linearVelocity * Vector3.Distance(ball.position, transform.position) * anticipateTargetAmount;
+        return targetPos + projectedBallMovement;
+    }
 
-    IEnumerator BoostTriggerRoutine()
+
+IEnumerator BoostTriggerRoutine()
     {
         Boost();
         var waitTime = IsNearTarget() ? maxBoostDelay : minBoostDelay;
